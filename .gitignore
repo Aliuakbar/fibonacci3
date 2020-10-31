@@ -3,3 +3,4 @@ dist*.egg-info
 fibonacci3.egg-info
 __pycache__
 *.pyc
+dist
