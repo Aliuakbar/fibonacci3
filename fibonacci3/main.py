@@ -3,9 +3,10 @@ from i3ipc.aio import Connection
 import asyncio
 
 PHI = (1 + 5**(1 / 2)) / 2
+WIDTH = 1920
+HEIGHT = 1080
 
 async def on_focus_window(i3, e):
-    print(f"a new window opened: {e.container.name}")
     tree = await i3.get_tree()
 
     con = tree.find_focused()
@@ -15,11 +16,13 @@ async def on_focus_window(i3, e):
     width = rect.width
     height = rect.height
 
-    new_width = int(min(width * PHI, 1920 / PHI))
-    new_height = int(min(height * PHI, 1080 / PHI))
-    print(new_width, new_height)
+    # new_width = int(min(width * PHI, 1920 / PHI))
+    new_width = int(WIDTH / PHI)
+    # new_height = int(min(height * PHI, 1080 / PHI))
+    new_height = int(HEIGHT / PHI)
 
     step = 20
+    # Annoying animation :)
     """
     while new_width > width:
         width += step
